@@ -1,13 +1,25 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import "./Login.css"
 
 export default function Login() {
+
+    let navigate = useNavigate()
+
   return (
-    <>
-        <h1>Login</h1>
-        <form>
-            <input type="text" name="email" placeholder="email or username..." required/>
-            <input type="password" name="password" placeholder="password..." required/>
-        </form>
-    </>
+        <div className="login">
+            <h1>Login</h1>
+            <form>
+                <input type="text" name="email" placeholder="email or username..." required/>
+                <input type="password" name="password" placeholder="password..." required/>
+                <button>Log In</button>
+            </form>
+            <div className="login-signup">
+                    <span>Don't have an account?</span>
+                    <button onClick={() => {
+                        navigate('/signup')
+                    }}>Sign Up</button>
+            </div>
+        </div>
   )
 }
