@@ -40,13 +40,7 @@ function App() {
             currentUser !== null ? (
               <div>
                 <h1>Welcome, {currentUser.username}</h1>
-                <button
-                  onClick={() => {
-                    signOut();
-                  }}
-                >
-                  Sign Out
-                </button>
+                <button onClick={signOut}>Sign Out</button>
               </div>
             ) : (
               <Navigate to="/login" />
@@ -54,7 +48,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp signIn={signIn}/>} />
       </Routes>
     </div>
   );

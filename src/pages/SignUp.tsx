@@ -1,4 +1,10 @@
-export function SignUp(){
+import { User } from "../App";
+
+type Props = {
+    signIn: (user: User) => void;
+}
+
+export function SignUp({ signIn }: Props) {
     return (
         <>
             <h1>Create a new account</h1>
@@ -16,12 +22,13 @@ export function SignUp(){
                         'Content-Type': 'application/json'
                     }, 
                     body: JSON.stringify(newUser)
-                }).then(() => {
-                    fetch('http://localhost:4000/users')
-                    .then(response => response.json())
-                    .then(users => {
-                        
-                    })
+                }).then(r => r.json())
+                .then(data => {
+                    if(data.error){
+                        alert(data.error)
+                    } else {
+                        signIn(data)
+                    }
                 })
             }}>
                 <input type="text" name="username" placeholder="username..." required/>
