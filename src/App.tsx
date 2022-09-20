@@ -24,11 +24,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   function signIn(user: User) {
-    setCurrentUser(user);
+    setCurrentUser(user)
   }
 
   function signOut() {
-    setCurrentUser(null);
+    setCurrentUser(null)
   }
 
   return (
