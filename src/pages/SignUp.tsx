@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { User } from "../App";
 import "./SignUp.css";
 
@@ -6,6 +7,9 @@ export type Props = {
 };
 
 export function SignUp({ signIn }: Props) {
+
+    let navigate = useNavigate()
+
   return (
       <div className="signup">
         <h1>Create a new account</h1>
@@ -43,8 +47,14 @@ export function SignUp({ signIn }: Props) {
             placeholder="password..."
             required
             />
-            <button>Submit</button>
+            <button>Sign Up</button>
         </form>
+        <div className="signup-login">
+                    <span>Already have an account?</span>
+                    <button onClick={() => {
+                        navigate('/login')
+                    }}>Login</button>
+            </div>
       </div>
   );
 }

@@ -17,3 +17,10 @@
     width: 100px;
     height: 2rem;
 }
+
+.signup-login{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: 20px;
+}
