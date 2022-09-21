@@ -33,7 +33,20 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.token)
+    if (localStorage.token){
+      fetch(`http://localhost:4000/validate`,{
+        headers: {
+          Authorization: localStorage.token
+        }
+      }).then(r => r.json())
+      .then(data => {
+        if (data.error){
+          alert(data.error)
+        } else {
+          signIn(data)
+        }
+      })
+    }
   }, [])
 
   return (
@@ -52,7 +65,7 @@ function App() {
             )
           }
         />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login signIn={signIn} />} />
         <Route path="/signup" element={<SignUp signIn={signIn}/>} />
       </Routes>
     </div>

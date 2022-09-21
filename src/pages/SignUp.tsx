@@ -1,7 +1,7 @@
 import { User } from "../App";
 import "./SignUp.css";
 
-type Props = {
+export type Props = {
   signIn: (user: User) => void;
 };
 

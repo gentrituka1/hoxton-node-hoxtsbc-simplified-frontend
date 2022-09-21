@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Login.css"
+import { Props } from './SignUp'
 
-export default function Login() {
+export default function Login({ signIn }: Props) {
 
     let navigate = useNavigate()
 
@@ -18,6 +19,19 @@ export default function Login() {
                 }
 
                 fetch("http://localhost:4000/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }, 
+                    body: JSON.stringify(userToLogin)
+                }).then(r => r.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error)
+                    } else {
+                        signIn(data)
+                    }
+                })
             }}>
                 <input type="text" name="email" placeholder="email or username..." required/>
                 <input type="password" name="password" placeholder="password..." required/>
