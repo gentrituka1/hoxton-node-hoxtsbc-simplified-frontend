@@ -9,7 +9,16 @@ export default function Login() {
   return (
         <div className="login">
             <h1>Login</h1>
-            <form>
+            <form onSubmit={(e) => {
+                e.preventDefault()
+
+                const userToLogin = {
+                    email: e.target.email.value,
+                    password: e.target.password.value
+                }
+
+                fetch("http://localhost:4000/login", {
+            }}>
                 <input type="text" name="email" placeholder="email or username..." required/>
                 <input type="password" name="password" placeholder="password..." required/>
                 <button>Log In</button>

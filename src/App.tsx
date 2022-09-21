@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
-import { SignUp } from "./pages/Signup";
+import {SignUp}  from "./pages/SignUp";
 
 export type Transaction = {
   id: number;
@@ -23,13 +22,19 @@ export type User = {
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  function signIn(user: User) {
-    setCurrentUser(user)
+  function signIn(data: any) {
+    setCurrentUser(data.user)
+    localStorage.token = data.token
   }
 
   function signOut() {
     setCurrentUser(null)
+    localStorage.removeItem("token")
   }
+
+  useEffect(() => {
+    if (localStorage.token)
+  }, [])
 
   return (
     <div className="App">
