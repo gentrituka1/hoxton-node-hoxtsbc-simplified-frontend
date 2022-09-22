@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import {SignUp}  from "./pages/SignUp";
+import Transactions from "./pages/Transactions";
 
 export type Transaction = {
   id: number;
@@ -56,19 +57,7 @@ function App() {
           index
           element={
             currentUser !== null ? (
-              <>
-              <div>
-                <h1>Welcome, {currentUser.username}</h1>
-                <button onClick={signOut}>Sign Out</button>
-              </div>
-              <ul>
-                {currentUser.transactions.map((transaction: Transaction) => (
-                  <li key={transaction.id}>
-                    <h2>Transaction made by: {transaction.userId} who sent/recieved: ${transaction.amount}, because {transaction.reason}.</h2>
-                  </li>
-                ))}
-              </ul>
-              </>
+              <Transactions currentUser={currentUser} signOut={signOut}/>
             ) : (
               <Navigate to="/login" />
             )
