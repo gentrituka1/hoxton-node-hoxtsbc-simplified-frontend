@@ -14,7 +14,7 @@ export default function Login({ signIn }: Props) {
                 e.preventDefault()
 
                 const userToLogin = {
-                    email: e.target.email.value,
+                    login: e.target.login.value,
                     password: e.target.password.value
                 }
 
@@ -33,7 +33,7 @@ export default function Login({ signIn }: Props) {
                     }
                 })
             }}>
-                <input type="text" name="email" placeholder="email or username..." required/>
+                <input type="text" name="login" placeholder="email or username..." required/>
                 <input type="password" name="password" placeholder="password..." required/>
                 <button>Log In</button>
             </form>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Login from "./pages/Login";
 import {SignUp}  from "./pages/SignUp";
 import Transactions from "./pages/Transactions";
@@ -23,9 +23,12 @@ export type User = {
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
+  let navigate = useNavigate()
+
   function signIn(data: any) {
     setCurrentUser(data.user)
     localStorage.token = data.token
+    navigate('/')
   }
 
   function signOut() {
@@ -40,11 +43,11 @@ function App() {
           Authorization: localStorage.token
         }
       }).then(r => r.json())
-      .then(data => {
-        if (data.error){
-          alert(data.error)
+      .then(result => {
+        if (result.error){
+          alert(result.error)
         } else {
-          signIn(data)
+          signIn(result.data)
         }
       })
     }
